@@ -7,20 +7,21 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "dropin", ".", "{E9573AE4-1D
 	ProjectSection(WebsiteProperties) = preProject
 		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		Debug.AspNetCompiler.VirtualPath = "/localhost_55036"
-		Debug.AspNetCompiler.PhysicalPath = "H:\codes\dropin\"
+		Debug.AspNetCompiler.PhysicalPath = "..\dropin\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55036\"
 		Debug.AspNetCompiler.Updateable = "true"
 		Debug.AspNetCompiler.ForceOverwrite = "true"
 		Debug.AspNetCompiler.FixedNames = "false"
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.VirtualPath = "/localhost_55036"
-		Release.AspNetCompiler.PhysicalPath = "H:\codes\dropin\"
+		Release.AspNetCompiler.PhysicalPath = "..\dropin\"
 		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_55036\"
 		Release.AspNetCompiler.Updateable = "true"
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
 		VWDPort = "55036"
+		SlnRelativePath = "..\dropin\"
 	EndProjectSection
 EndProject
 Global
