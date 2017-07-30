@@ -1,0 +1,17 @@
+﻿<dom-module id="dp-provider">
+    <template>
+        <style include="dp-styles">
+        </style>
+        <div class="card">
+            <div class="circle">1</div>
+            <h1>Provider View</h1>
+        </div>
+    </template>
+    <script>
+    class DpProvider extends Polymer.Element {
+      static get is() { return 'dp-provider'; }
+    }
+
+        window.customElements.define(DpProvider.is, DpProvider);
+    </script>
+</dom-module>

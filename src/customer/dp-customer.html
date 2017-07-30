@@ -1,0 +1,17 @@
+﻿<dom-module id="dp-customer">
+    <template>
+        <style include="dp-styles">
+        </style>
+        <div class="card">
+            <div class="circle">1</div>
+            <h1>Customer View</h1>          
+        </div>
+    </template>
+    <script>
+    class DpCustomer extends Polymer.Element {
+      static get is() { return 'dp-customer'; }
+    }
+
+        window.customElements.define(DpCustomer.is, DpCustomer);
+    </script>
+</dom-module>

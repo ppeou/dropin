@@ -1,8 +1,104 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="rules/rules.html">
+<link rel="import" href="dp-styles-helpers.html">
 <link href="https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext" rel="stylesheet">
 
 <custom-style>
     <style>
+        html, body, div, span, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        abbr, address, cite, code,
+        del, dfn, em, img, ins, kbd, q, samp,
+        small, strong, sub, sup, var,
+        b, i,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            outline: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        article, aside, details, figcaption, figure,
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+
+            nav ul {
+                list-style: none;
+            }
+
+        blockquote, q {
+            quotes: none;
+        }
+
+            blockquote:before, blockquote:after,
+            q:before, q:after {
+                content: '';
+                content: none;
+            }
+
+        a {
+            margin: 0;
+            padding: 0;
+            font-size: 100%;
+            vertical-align: baseline;
+            background: transparent;
+        }
+
+        /* change colours to suit your needs */
+        ins {
+            background-color: #ff9;
+            color: #000;
+            text-decoration: none;
+        }
+
+        /* change colours to suit your needs */
+        mark {
+            background-color: #ff9;
+            color: #000;
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        del {
+            text-decoration: line-through;
+        }
+
+        abbr[title], dfn[title] {
+            border-bottom: 1px dotted;
+            cursor: help;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        /* change border colour to suit your needs */
+        hr {
+            display: block;
+            height: 1px;
+            border: 0;
+            border-top: 1px solid #cccccc;
+            margin: 1em 0;
+            padding: 0;
+        }
+
+        input, select {
+            vertical-align: middle;
+        }
         body {
             font-family: 'Cabin', sans-serif;
             font-size: 16px;
@@ -12,13 +108,70 @@
     </style>
 </custom-style>
 
-
-
 <dom-module id="dp-styles">
     <template>
-        <style>
+        <style include="dp-styles-rules dp-styles-helpers">
             :host {
                 display: block;
+            }
+
+
+            app-drawer-layout:not([narrow]) [drawer-toggle] {
+                display: none;
+            }
+
+            app-header {
+                color: #fff;
+                background-color: var(--app-primary-color);
+            }
+
+                app-header paper-icon-button {
+                    --paper-icon-button-ink-color: white;
+                }
+
+            .drawer-list {
+                margin: 0 20px;
+            }
+
+                .drawer-list a {
+                    display: block;
+                    padding: 0 16px;
+                    text-decoration: none;
+                    color: var(--app-secondary-color);
+                    line-height: 40px;
+                }
+
+                    .drawer-list a.iron-selected {
+                        color: black;
+                        font-weight: bold;
+                    }
+
+                    /*-- Page Layout --*/
+            .card {
+                margin: 24px;
+                padding: 16px;
+                color: #757575;
+                border-radius: 5px;
+                background-color: #fff;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+            }
+
+            .circle {
+                display: inline-block;
+                width: 64px;
+                height: 64px;
+                text-align: center;
+                color: #555;
+                border-radius: 50%;
+                background: #ddd;
+                font-size: 30px;
+                line-height: 64px;
+            }
+
+            h1 {
+                margin: 16px 0;
+                color: #212121;
+                font-size: 22px;
             }
         </style>
     </template>

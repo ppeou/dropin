@@ -1,0 +1,60 @@
+﻿<link rel="import" href="../bower_components/google-map/google-map-elements.html">
+<link rel="import" href="../bower_components/geo-location/geo-location.html">
+
+<link rel="import" href="services/dp-service-geo-helper.html">
+
+<dom-module id="dp-landing-page">
+    <template>
+        <style include="dp-styles">
+            .map-section {
+                height: 100vh;
+                width: 100vw;
+                position: relative;
+            }
+            .search-bar{
+                position: fixed;
+                top: 0; width: 100vw;
+                background-color: #ccc;
+            }
+            .search-bar paper-input{
+                width: 100%;
+            }
+        </style>   
+        <div class="map-section">
+            <dp-service-geo-helper id="geoService"></dp-service-geo-helper>
+            <google-map latitude="[[lat]]" longitude="[[lng]]"
+                        fit-to-marker api-key="AIzaSyDN1-5T5UmXbJLxj-wf56e_Mh4h32w11vQ">
+                <google-map-marker latitude="[[lat]]" longitude="[[lng]]"></google-map-marker>
+            </google-map>
+            <div class="search-bar">
+                <paper-input label="">
+                    <div slot="suffix">@email.com</div>
+                </paper-input>
+            </div>
+        </div>
+    </template>
+    <script>
+        class DpLandingPage extends Polymer.Element {
+            static get is() { return 'dp-landing-page'; }
+            static get properties() {                
+                return {
+                    lng: String,
+                    lat: String
+                };
+            }
+            connectedCallback() {
+                super.connectedCallback();                
+                DpServiceGeoHelper.LongLat.then(e => {                    
+                    this.setProperties({
+                        lat: e.latitude,
+                        lng: e.longitude
+                    });
+                }).catch(e => {
+                    //TODO: handle no location service
+                });
+            }
+        }
+
+        window.customElements.define(DpLandingPage.is, DpLandingPage);
+    </script>
+</dom-module>

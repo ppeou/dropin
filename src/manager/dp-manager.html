@@ -1,0 +1,17 @@
+﻿<dom-module id="dp-manager">
+    <template>
+        <style include="dp-styles">
+        </style>
+        <div class="card">
+            <div class="circle">1</div>
+            <h1>Manager View</h1>
+        </div>
+    </template>
+    <script>
+    class DpManager extends Polymer.Element {
+      static get is() { return 'dp-manager'; }
+    }
+
+        window.customElements.define(DpManager.is, DpManager);
+    </script>
+</dom-module>
