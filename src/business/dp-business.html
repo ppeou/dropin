@@ -1,0 +1,72 @@
+﻿<dom-module id="dp-business">
+    <template>
+        <style include="dp-styles"></style>
+        <div class="dp-page fixed-top">
+
+            <div class="dp-page-content">
+                <h2>[[value.name]] ([[openText]])</h2>
+                <div class="layout horizontal">
+                    <div class="flex layout vertical">
+                        <img class="flex-2 profile-picture" src="../../images/store.png" />
+                    </div>
+                    <div class="flex-10">
+                        <div class="layout vertical justified">
+                            <address class="flex-2">
+                                [[value.address]] [[value.address]]<br />
+                                [[value.city]] [[value.state]] [[value.zip]]
+                            </address>
+                            <div  class="flex-2 layout horizontal">
+                                <paper-button class="btn btn-mint flex-2" raised>
+                                    <i class="md-icon">phone</i> Call
+                                </paper-button>
+                                <paper-button class="btn btn-mint flex-2" raised>
+                                    <i class="md-icon">email</i> Email
+                                </paper-button>
+                                <paper-button class="btn btn-mint flex-2" raised>
+                                    <i class="md-icon">directions</i> GPS
+                                </paper-button>
+                                <paper-button class="btn btn-primary flex-2" raised>
+                                    <i class="md-icon">date_range</i> Book Appointment
+                                </paper-button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr/>
+                <div>
+                    <h4>About Business</h4>
+                    <div>[[value.description]]</div>
+                    <h4>Business Hour</h4>
+                    <ul>
+                        <template is="dom-repeat" items="[[value.hours]]">
+                            <li><em>[[item.day]]: </em>[[item.0]] - [[item.1]]</li>
+                        </template>
+                    </ul>
+                </div>
+                <div>
+                    Phone: <span>[[value.phone]]</span> | Email: <span>[[value.email]]</span> 
+                </div>
+                <div>
+                    Map Here
+                </div>
+            </div>
+        </div>
+        <dp-api-service id="DpApiService" 
+                        business-id="[[urlParam.id]]"
+                        business-info="{{value}}"></dp-api-service>
+    </template>
+    <script>
+        class DpBusiness extends Polymer.Element {
+            static get is() { return 'dp-business'; }
+            static get properties() {
+                return {};
+            }
+            static get observers() {
+                return [];
+            }
+
+        }
+
+        window.customElements.define(DpBusiness.is, DpBusiness);
+    </script>
+</dom-module>

@@ -1,0 +1,102 @@
+﻿<dom-module id="dp-profile">
+    <template>
+        <style include="dp-styles">
+            .profile-picture {
+                width: 100px;
+            }
+            .flex-4 {
+                min-width: 30%;
+                width: 30%;
+                max-width: 30%;
+            }
+            .flex-6 {
+                min-width: 47.5%;
+                width: 47.5%;
+                max-width: 47.5%;
+            }
+            .flex-12 {
+                min-width: 100%;
+                width: 100%;
+                max-width: 100%;
+            }
+            /*.form-layout {}
+                .form-layout .flex-4,
+                .form-layout .flex-6,
+                .form-layout .flex-12 {
+                    padding: 0 10px;
+                }*/
+        </style>
+        <div class="dp-page fixed-top">
+            <dp-page-header></dp-page-header>
+            <div class="dp-page-content">
+                <div class="layout horizontal">
+                    <div class="flex layout vertical">
+                        <img class="flex-2 profile-picture" src="../../images/profile.png" />
+                        <paper-button class="btn btn-default flex-2 no-margin" raised>
+                            <i class="md-icon">edit</i> Edit
+                        </paper-button>
+                    </div>
+                    <div class="flex-10">
+                        <h2>Hello [[fullName]]</h2>
+                    </div>
+                </div>
+                <div class="layout horizontal wrap justified">                    
+                    <paper-input class="flex-6" value="{{profile.firstName}}"
+                                 label="first name"></paper-input>
+                    <paper-input class="flex-6" value="{{profile.lastName}}"
+                                 label="last name"></paper-input>
+                    <paper-input class="flex-6" value="{{profile.email}}"
+                                 label="email"></paper-input>
+                    <paper-input class="flex-6" value="{{profile.phone}}"
+                                 label="phone"></paper-input>
+                    <paper-input class="flex-12" value="{{profile.address}}"
+                                 label="address"></paper-input>
+                    <paper-input class="flex-4" value="{{profile.city}}"
+                                 label="city"></paper-input>
+                    <paper-dropdown-menu class="flex-4" label="state">
+                        <paper-listbox slot="dropdown-content" attr-for-selected="id" selected="{{profile.state}}">
+                            <template is="dom-repeat" items='[[stateList]]'>
+                                <paper-item id="[[item.abbr]]">[[item.abbr]]</paper-item>
+                            </template>
+                        </paper-listbox>
+                    </paper-dropdown-menu>
+                    <paper-input class="flex-4" value="{{profile.zipcode}}"
+                                 label="zipcode"></paper-input>                                       
+                </div>                
+                <div class="text-right">
+                    <paper-button class="btn btn-primary no-margin" raised>save</paper-button>
+                </div> 
+            </div>
+        </div>
+        <dp-api-service id="DpApiService" profile="{{profile}}"></dp-api-service>
+    </template>
+    <script>
+        class DpProfile extends Polymer.Element {
+            static get is() { return 'dp-profile'; }
+            static get properties() {
+                return {
+                    profile: Object,
+                    fullName: { type: String, computed: '_fullname(profile.firstName, profile.lastName)' },
+                    stateList: Array
+                };
+            }
+            static get observers() {
+                return ['_watchProfile(profile)'];
+            }
+            connectedCallback() {
+                super.connectedCallback();
+                this.$.DpApiService._getUserProfile(1);
+                console.log(this.$.DpApiService._getStateList());
+                this.set('stateList', this.$.DpApiService._getStateList());
+            }
+            _watchProfile(data) {
+                console.log(data);
+            }
+            _fullname(fn, ln) {
+                return `${fn} ${ln}`;
+            }
+        }
+
+        window.customElements.define(DpProfile.is, DpProfile);
+    </script>
+</dom-module>

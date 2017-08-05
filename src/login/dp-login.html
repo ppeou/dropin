@@ -1,0 +1,26 @@
+﻿<dom-module id="dp-login">
+    <template>
+        <style include="dp-styles">
+            .login-page{
+                width: 50%;
+            }
+        </style>
+        <div class="login-page">
+            <h2>Log-in</h2>
+            <paper-input id="emailPhone" label="Email or Phone" type="email" required></paper-input>
+            <paper-input id="password" label="Password" type="password"></paper-input>
+            <paper-button class="btn btn-primary">Login</paper-button>
+            <hr />
+            <h2>Sign-up</h2>
+            <paper-input id="emailPhone" label="Email or Phone" type="email" required></paper-input>
+            <paper-input id="password" label="Password" type="password"></paper-input>
+            <paper-button class="btn btn-dark">Sign-up</paper-button>
+        </div>
+    </template>
+    <script>
+        class DpLogin extends Polymer.Element {
+            static get is() {return 'dp-login'; }
+        }
+        window.customElements.define(DpLogin.is, DpLogin);
+    </script>
+</dom-module>

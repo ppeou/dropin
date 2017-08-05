@@ -1,0 +1,385 @@
+﻿<dom-module id="dp-styles-buttons">
+    <template>
+        <style>
+            :root {
+                --btn-icon: {padding-left: 9px;padding-right: 9px;};
+                --btn: {
+                         cursor: pointer;
+                         background-color: transparent;
+                         color: inherit;
+                         padding: 6px 12px;
+                         border-radius: 0;
+                         border: 1px solid 0;
+                         font-size: 12px;
+                         line-height: 1.42857;
+                         vertical-align: middle;
+                         -webkit-transition: all .25s;
+                         transition: all .25s;
+                     };
+                --btn-default: {
+                         background-color: #fafafa;
+                         border-color: #cdd6e1;
+                         color: #515151;
+                     };
+                --btn-primary: {
+                         background-color: #579ddb;
+                         border-color: #5fa2dd;
+                         color: #fff;
+                     };
+                --btn-info: {
+                         background-color: #46b9d8;
+                         border-color: #4ebcda;
+                         color: #fff;
+                     };
+                --btn-success: {
+                         background-color: #97c664;
+                         border-color: #9cc96b;
+                         color: #fff;
+                     };
+                --btn-mint: {
+                         background-color: #48c5a3;
+                         border-color: #50c7a7;
+                         color: #fff;
+                     };
+                --btn-warning: {
+                         background-color: #eaa642;
+                         border-color: #ebaa4b;
+                         color: #fff;
+                     };
+                --btn-danger: {
+                         background-color: #f76447;
+                         border-color: #f76c51;
+                         color: #fff;
+                     };
+                --btn-pink: {
+                         background-color: #df74a1;
+                         border-color: #e17ca7;
+                         color: #fff;
+                     };
+                --btn-purple: {
+                         background-color: #925e8b;
+                         border-color: #986291;
+                         color: #fff;
+                     };
+                --btn-dark: {
+                         background-color: #363c40;
+                         border-color: #3b4146;
+                         color: #fff;
+                     };
+                --btn-disabled: {
+                     pointer-events: none;
+                     cursor: not-allowed;
+                     filter: alpha(opacity=65);
+                     -webkit-box-shadow: none;
+                     box-shadow: none;
+                     opacity: .65;
+                 };
+                --btn-disabled-default: {
+                     background-color: #fff;
+                     border-color: #ccc;
+                 };
+                --btn-disabled-primary: {
+                     background-color: #337ab7;
+                     border-color: #2e6da4;
+                 };
+                --btn-disabled-info: {
+                     background-color: #5bc0de;
+                     border-color: #46b8da;
+                 };
+                --btn-disabled-success: {
+                     background-color: #5cb85c;
+                     border-color: #4cae4c;
+                 };
+                --btn-disabled-mint: {};
+                --btn-disabled-warning: {
+                     background-color: #f0ad4e;
+                     border-color: #eea236;
+                 };
+                --btn-disabled-danger: {
+                     background-color: #d9534f;
+                     border-color: #d43f3a;
+                 };
+                --btn-disabled-pink: {
+                     background-color: #df74a1;
+                     border-color: #e17ca7;
+                     color: #fff;
+                 };
+                --btn-disabled-purple: {
+                     background-color: #925e8b;
+                     border-color: #986291;
+                     color: #fff;
+                 };
+                --btn-disabled-dark: {
+                     background-color: #363c40;
+                     border-color: #3b4146;
+                     color: #fff;
+                 };
+            }
+            paper-button.btn {
+                @apply --btn;
+            }
+
+            paper-button.btn-default {
+                @apply --btn;
+                @apply --btn-default;
+            }
+
+            paper-button.btn-primary {
+                @apply --btn;
+                @apply --btn-primary;
+            }
+
+            paper-button.btn-primary {
+                @apply --btn;
+                @apply --btn-primary;
+            }
+
+            paper-button.btn-info {
+                @apply --btn;
+                @apply --btn-info;
+            }
+
+            paper-button.btn-success {
+                @apply --btn;
+                @apply --btn-success;
+            }
+
+            paper-button.btn-mint {
+                @apply --btn;
+                @apply --btn-mint;
+            }
+
+            paper-button.btn-warning {
+                @apply --btn;
+                @apply --btn-warning;
+            }
+
+            paper-button.btn-danger {
+                @apply --btn;
+                @apply --btn-danger;
+            }
+
+            paper-button.btn-pink {
+                @apply --btn;
+                @apply --btn-pink;
+            }
+
+            paper-button.btn-purple {
+                @apply --btn;
+                @apply --btn-purple;
+            }
+
+            paper-button.btn-dark {
+                @apply --btn;
+                @apply --btn-dark;
+            }
+
+            /*-- disable state --*/
+
+            paper-button[disabled].btn {
+                @apply --btn-disabled;
+            }
+
+            paper-button[disabled].btn-default {
+                @apply --btn-disabled;
+                @apply --btn-disabled-default;
+            }
+
+            paper-button[disabled].btn-primary {
+                @apply --btn-disabled;
+                @apply --btn-disabled-primary;
+            }
+
+            paper-button[disabled].btn-primary {
+                @apply --btn-disabled;
+                @apply --btn-disabled-primary;
+            }
+
+            paper-button[disabled].btn-info {
+                @apply --btn-disabled;
+                @apply --btn-disabled-info;
+            }
+
+            paper-button[disabled].btn-success {
+                @apply --btn-disabled;
+                @apply --btn-disabled-success;
+            }
+
+            paper-button[disabled].btn-mint {
+                @apply --btn-disabled;
+                @apply --btn-disabled-mint;
+            }
+
+            paper-button[disabled].btn-warning {
+                @apply --btn-disabled;
+                @apply --btn-disabled-warning;
+            }
+
+            paper-button[disabled].btn-danger {
+                @apply --btn-disabled;
+                @apply --btn-disabled-danger;
+            }
+
+            paper-button[disabled].btn-pink {
+                @apply --btn-disabled;
+                @apply --btn-disabled-pink;
+            }
+
+            paper-button[disabled].btn-purple {
+                @apply --btn-disabled;
+                @apply --btn-disabled-purple;
+            }
+
+            paper-button[disabled].btn-dark {
+                @apply --btn-disabled;
+                @apply --btn-disabled-dark;
+            }
+
+            /*-- paper-icon-button --*/
+
+            paper-icon-button.btn {
+                @apply --btn;
+                @apply --btn-icon;
+            }
+
+            paper-icon-button.btn-default {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-default;
+            }
+
+            paper-icon-button.btn-primary {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-primary;
+            }
+
+            paper-icon-button.btn-primary {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-primary;
+            }
+
+            paper-icon-button.btn-info {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-info;
+            }
+
+            paper-icon-button.btn-success {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-success;
+            }
+
+            paper-icon-button.btn-mint {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-mint;
+            }
+
+            paper-icon-button.btn-warning {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-warning;
+            }
+
+            paper-icon-button.btn-danger {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-danger;
+            }
+
+            paper-icon-button.btn-pink {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-pink;
+            }
+
+            paper-icon-button.btn-purple {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-purple;
+            }
+
+            paper-icon-button.btn-dark {
+                @apply --btn;
+                @apply --btn-icon;
+                @apply --btn-dark;
+            }
+
+            /*-- disable state --*/
+
+            paper-icon-button[disabled].btn {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+            }
+
+            paper-icon-button[disabled].btn-default {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-default;
+            }
+
+            paper-icon-button[disabled].btn-primary {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-primary;
+            }
+
+            paper-icon-button[disabled].btn-primary {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-primary;
+            }
+
+            paper-icon-button[disabled].btn-info {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-info;
+            }
+
+            paper-icon-button[disabled].btn-success {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-success;
+            }
+
+            paper-icon-button[disabled].btn-mint {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-mint;
+            }
+
+            paper-icon-button[disabled].btn-warning {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-warning;
+            }
+
+            paper-icon-button[disabled].btn-danger {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-danger;
+            }
+
+            paper-icon-button[disabled].btn-pink {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-pink;
+            }
+
+            paper-icon-button[disabled].btn-purple {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-purple;
+            }
+
+            paper-icon-button[disabled].btn-dark {
+                @apply --btn-disabled;
+                @apply --btn-icon;
+                @apply --btn-disabled-dark;
+            }
+        </style>
+    </template>
+</dom-module>

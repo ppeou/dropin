@@ -1,22 +1,17 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="rules/rules.html">
+<link rel="import" href="dp-styles-reset.html">
 <link rel="import" href="dp-styles-helpers.html">
+<link rel="import" href="dp-styles-typography.html">
+<link rel="import" href="dp-styles-buttons.html">
+
+<link rel="import" href="md-icons.html">
 <link href="https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext" rel="stylesheet">
 
 <custom-style>
     <style>
-        html, body, div, span, object, iframe,
-        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-        abbr, address, cite, code,
-        del, dfn, em, img, ins, kbd, q, samp,
-        small, strong, sub, sup, var,
-        b, i,
-        dl, dt, dd, ol, ul, li,
-        fieldset, form, label, legend,
-        table, caption, tbody, tfoot, thead, tr, th, td,
-        article, aside, canvas, details, figcaption, figure,
-        footer, header, hgroup, menu, nav, section, summary,
-        time, mark, audio, video {
+        html, body {
             margin: 0;
             padding: 0;
             border: 0;
@@ -99,20 +94,27 @@
         input, select {
             vertical-align: middle;
         }
+
         body {
             font-family: 'Cabin', sans-serif;
             font-size: 16px;
             color: #333;
             background-color: #fff;
         }
+        paper-input-container ::slotted .floated-label-placeholder {
+            display: none;
+        }
     </style>
 </custom-style>
 
 <dom-module id="dp-styles">
     <template>
-        <style include="dp-styles-rules dp-styles-helpers">
+        <style include="dp-styles-reset dp-styles-typography md-icons iron-flex iron-flex-reverse iron-flex-alignment iron-flex-factors iron-positioning dp-styles-rules dp-styles-helpers dp-styles-buttons">
+
             :host {
                 display: block;
+                --dp-nav-background-color: #32404e;
+                --dp-nav-color: #fff;
             }
 
 
@@ -156,6 +158,17 @@
                 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
             }
 
+            .dp-page {
+                height: 100vh;
+                width: 100vw;
+                background-color: #e7ebee;
+            }
+
+            .dp-page-content {
+                padding: 1em;
+                color: #515151;
+            }
+
             .circle {
                 display: inline-block;
                 width: 64px;
@@ -166,12 +179,6 @@
                 background: #ddd;
                 font-size: 30px;
                 line-height: 64px;
-            }
-
-            h1 {
-                margin: 16px 0;
-                color: #212121;
-                font-size: 22px;
             }
         </style>
     </template>

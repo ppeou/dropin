@@ -1,0 +1,25 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="dp-stamp">
+  <template>
+    <style include="dp-styles">
+        :host {
+            position: fixed;
+            bottom: 1%;
+            left:1%;
+        }      
+    </style>
+    <div class="stamp"><h1>DropIn</h1></div>
+  </template>
+
+  <script>
+      class DpStamp extends Polymer.Element {
+          static get is() { return 'dp-stamp'; }
+          static get properties() {
+              return {};
+          }          
+      }
+
+      window.customElements.define(DpStamp.is, DpStamp);
+  </script>
+</dom-module>

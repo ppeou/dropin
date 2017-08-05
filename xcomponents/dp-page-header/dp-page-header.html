@@ -1,0 +1,26 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="dp-page-header">
+  <template>
+    <style include="dp-styles">
+        :host {
+            background-color: var(--dp-nav-background-color);
+            color: var(--dp-nav-color);
+            padding: 0.5em 1em;
+        }
+
+    </style>
+    <div class="page-header"><h1>DropIn</h1></div>
+  </template>
+
+  <script>
+      class DpPageHeader extends Polymer.Element {
+          static get is() { return 'dp-page-header'; }
+          static get properties() {
+              return {};
+          }          
+      }
+
+      window.customElements.define(DpPageHeader.is, DpPageHeader);
+  </script>
+</dom-module>
