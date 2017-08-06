@@ -1,72 +1,80 @@
-﻿<dom-module id="dp-styles-buttons">
-    <template>
-        <style>
-            :root {
-                --btn-icon: {padding-left: 9px;padding-right: 9px;};
-                --btn: {
+﻿<link rel="import" href="../../bower_components/polymer/lib/elements/custom-style.html">
+<link rel="import" href="md-icons.html">
+
+<custom-style>
+    <style include="md-icons">
+        html {
+            --btn: {
                          cursor: pointer;
                          background-color: transparent;
                          color: inherit;
                          padding: 6px 12px;
                          border-radius: 0;
                          border: 1px solid 0;
+                         font-weight: 400;
+                         text-align: center;
+                         white-space: nowrap;
                          font-size: 12px;
                          line-height: 1.42857;
                          vertical-align: middle;
                          -webkit-transition: all .25s;
                          transition: all .25s;
+                          user-select: none;
+                          border: 1px solid transparent;
                      };
-                --btn-default: {
+            /*-- btn colors --*/
+            --btn-default: {
                          background-color: #fafafa;
                          border-color: #cdd6e1;
                          color: #515151;
                      };
-                --btn-primary: {
+            --btn-primary: {
                          background-color: #579ddb;
                          border-color: #5fa2dd;
                          color: #fff;
                      };
-                --btn-info: {
+            --btn-info: {
                          background-color: #46b9d8;
                          border-color: #4ebcda;
                          color: #fff;
                      };
-                --btn-success: {
+            --btn-success: {
                          background-color: #97c664;
                          border-color: #9cc96b;
                          color: #fff;
                      };
-                --btn-mint: {
+            --btn-mint: {
                          background-color: #48c5a3;
                          border-color: #50c7a7;
                          color: #fff;
                      };
-                --btn-warning: {
+            --btn-warning: {
                          background-color: #eaa642;
                          border-color: #ebaa4b;
                          color: #fff;
                      };
-                --btn-danger: {
+            --btn-danger: {
                          background-color: #f76447;
                          border-color: #f76c51;
                          color: #fff;
                      };
-                --btn-pink: {
+            --btn-pink: {
                          background-color: #df74a1;
                          border-color: #e17ca7;
                          color: #fff;
                      };
-                --btn-purple: {
+            --btn-purple: {
                          background-color: #925e8b;
                          border-color: #986291;
                          color: #fff;
                      };
-                --btn-dark: {
+            --btn-dark: {
                          background-color: #363c40;
                          border-color: #3b4146;
                          color: #fff;
                      };
-                --btn-disabled: {
+            /*-- btn states --*/
+            --btn-disabled: {
                      pointer-events: none;
                      cursor: not-allowed;
                      filter: alpha(opacity=65);
@@ -74,51 +82,92 @@
                      box-shadow: none;
                      opacity: .65;
                  };
-                --btn-disabled-default: {
+            --btn-disabled-default: {
                      background-color: #fff;
                      border-color: #ccc;
                  };
-                --btn-disabled-primary: {
+            --btn-disabled-primary: {
                      background-color: #337ab7;
                      border-color: #2e6da4;
                  };
-                --btn-disabled-info: {
+            --btn-disabled-info: {
                      background-color: #5bc0de;
                      border-color: #46b8da;
                  };
-                --btn-disabled-success: {
+            --btn-disabled-success: {
                      background-color: #5cb85c;
                      border-color: #4cae4c;
                  };
-                --btn-disabled-mint: {};
-                --btn-disabled-warning: {
+            --btn-disabled-mint: {};
+            --btn-disabled-warning: {
                      background-color: #f0ad4e;
                      border-color: #eea236;
                  };
-                --btn-disabled-danger: {
+            --btn-disabled-danger: {
                      background-color: #d9534f;
                      border-color: #d43f3a;
                  };
-                --btn-disabled-pink: {
+            --btn-disabled-pink: {
                      background-color: #df74a1;
                      border-color: #e17ca7;
                      color: #fff;
                  };
-                --btn-disabled-purple: {
+            --btn-disabled-purple: {
                      background-color: #925e8b;
                      border-color: #986291;
                      color: #fff;
                  };
-                --btn-disabled-dark: {
+            --btn-disabled-dark: {
                      background-color: #363c40;
                      border-color: #3b4146;
                      color: #fff;
                  };
-            }
+            /*-- sizing --*/
+            --btn-lg: {font-size: 16px;line-height: 1.33;padding: 10px 16px;};
+            --btn-sm: {font-size: 10px;line-height: 1.5;padding: 5px 10px;};
+            --btn-xs: {font-size: 10px;line-height: 1.5;padding: 1px 5px !important;};
+            --btn-block: {display: block;width: 100%;};
+            /*-- btn with icon --*/
+            --btn-icon: {
+                /*padding-left: 9px;padding-right: 9px;*/
+                    font-family: 'Material Icons';
+                    background-color: rgba(0,0,0,0.05);
+                    display: inline-block;
+                    margin: 0;
+                    padding: 0;
+                    text-transform: none;
+                    content: attr(icon);
+                    position: absolute;
+                    top: 0; left: 0;
+                };
+            --btn-icon-medium: {
+                font-size: 16px;
+                padding: 4px 7px;
+            };
+            --btn-icon-lg: {
+                font-size: 20px;
+                padding: 8px 11px;
+            };
+            --btn-icon-sm: {
+                font-size: 16px;
+                padding: 1px 5px;
+            };
+            --btn-icon-xs: {
+                font-size: 12px;
+                padding: 1px 3.5px;
+            };
+        }
+    </style>
+</custom-style>
+
+<dom-module id="dp-styles-buttons">
+    <template>
+        <style>
             paper-button.btn {
                 @apply --btn;
             }
 
+            /*-- btn colors ---*/
             paper-button.btn-default {
                 @apply --btn;
                 @apply --btn-default;
@@ -239,147 +288,179 @@
 
             paper-icon-button.btn {
                 @apply --btn;
-                @apply --btn-icon;
             }
 
             paper-icon-button.btn-default {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-default;
             }
 
             paper-icon-button.btn-primary {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-primary;
             }
 
             paper-icon-button.btn-primary {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-primary;
             }
 
             paper-icon-button.btn-info {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-info;
             }
 
             paper-icon-button.btn-success {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-success;
             }
 
             paper-icon-button.btn-mint {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-mint;
             }
 
             paper-icon-button.btn-warning {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-warning;
             }
 
             paper-icon-button.btn-danger {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-danger;
             }
 
             paper-icon-button.btn-pink {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-pink;
             }
 
             paper-icon-button.btn-purple {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-purple;
             }
 
             paper-icon-button.btn-dark {
                 @apply --btn;
-                @apply --btn-icon;
                 @apply --btn-dark;
             }
 
-            /*-- disable state --*/
-
+            /*-- btn states --*/
             paper-icon-button[disabled].btn {
                 @apply --btn-disabled;
-                @apply --btn-icon;
             }
 
             paper-icon-button[disabled].btn-default {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-default;
             }
 
             paper-icon-button[disabled].btn-primary {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-primary;
             }
 
             paper-icon-button[disabled].btn-primary {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-primary;
             }
 
             paper-icon-button[disabled].btn-info {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-info;
             }
 
             paper-icon-button[disabled].btn-success {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-success;
             }
 
             paper-icon-button[disabled].btn-mint {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-mint;
             }
 
             paper-icon-button[disabled].btn-warning {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-warning;
             }
 
             paper-icon-button[disabled].btn-danger {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-danger;
             }
 
             paper-icon-button[disabled].btn-pink {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-pink;
             }
 
             paper-icon-button[disabled].btn-purple {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-purple;
             }
 
             paper-icon-button[disabled].btn-dark {
                 @apply --btn-disabled;
-                @apply --btn-icon;
                 @apply --btn-disabled-dark;
             }
+
+            /*-- btn sizes ---*/
+            paper-button.btn-lg,
+            paper-button.btn-icon.btn-lg .md-icon {
+                @apply --btn-lg;
+            }
+
+            paper-button.btn-sm,
+            paper-button.btn-icon.btn-sm .md-icon {
+                @apply --btn-sm;
+            }
+
+            paper-button.btn-xs,
+            paper-button.btn-icon.btn-xs .md-icon {
+                @apply --btn-xs;
+            }
+
+            paper-button.btn-block {
+                @apply --btn-block;
+            }
+
+            /*-- btn icons ---*/
+            paper-button[icon]:before {
+                @apply --btn-icon;
+                @apply --btn-icon-medium;
+            }
+
+            paper-button[icon].btn-lg:before {
+                @apply --btn-icon-lg;
+            }
+
+            paper-button[icon].btn-sm:before {
+                @apply --btn-icon-sm;
+            }
+
+            paper-button[icon].btn-xs:before {
+                @apply --btn-icon-xs;
+            }
+
+            paper-button[icon] {
+                padding-left: 37px;
+            }
+
+            paper-button.btn-lg[icon] {
+                padding-left: 52px;
+            }
+            paper-button.btn-sm[icon] {
+                padding-left: 32px;
+            }
+            paper-button.btn-xs[icon] {
+                padding-left: 22px;
+            }
+
+            
+            
+
+
         </style>
     </template>
 </dom-module>

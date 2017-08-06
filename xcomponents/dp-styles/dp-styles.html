@@ -1,15 +1,22 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/polymer/lib/elements/custom-style.html">
 <link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout-classes.html">
 <link rel="import" href="rules/rules.html">
 <link rel="import" href="dp-styles-reset.html">
 <link rel="import" href="dp-styles-helpers.html">
 <link rel="import" href="dp-styles-typography.html">
 <link rel="import" href="dp-styles-buttons.html">
+<link rel="import" href="dp-styles-forms.html">
+<link rel="import" href="dp-styles-images.html">
+<link rel="import" href="dp-styles-pages.html">
+<link rel="import" href="bootstrap-styles-grids.html">
+
 
 <link rel="import" href="md-icons.html">
 <link href="https://fonts.googleapis.com/css?family=Cabin:400,400i,500,500i,600,600i,700,700i&amp;subset=latin-ext" rel="stylesheet">
 
-<custom-style>
+
+<custom-style> 
     <style>
         html, body {
             margin: 0;
@@ -30,7 +37,7 @@
             display: block;
         }
 
-            nav ul {
+            ol, ul, nav ul {
                 list-style: none;
             }
 
@@ -101,15 +108,15 @@
             color: #333;
             background-color: #fff;
         }
-        paper-input-container ::slotted .floated-label-placeholder {
+        /*paper-input-container ::slotted .floated-label-placeholder {
             display: none;
-        }
+        }*/
     </style>
 </custom-style>
 
 <dom-module id="dp-styles">
     <template>
-        <style include="dp-styles-reset dp-styles-typography md-icons iron-flex iron-flex-reverse iron-flex-alignment iron-flex-factors iron-positioning dp-styles-rules dp-styles-helpers dp-styles-buttons">
+        <style include="dp-styles-reset dp-styles-typography md-icons iron-flex iron-flex-reverse iron-flex-alignment iron-flex-factors iron-positioning dp-styles-rules dp-styles-helpers dp-styles-buttons dp-styles-forms dp-styles-images dp-styles-pages bootstrap-styles-grids">
 
             :host {
                 display: block;
@@ -158,16 +165,6 @@
                 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
             }
 
-            .dp-page {
-                height: 100vh;
-                width: 100vw;
-                background-color: #e7ebee;
-            }
-
-            .dp-page-content {
-                padding: 1em;
-                color: #515151;
-            }
 
             .circle {
                 display: inline-block;
@@ -180,6 +177,7 @@
                 font-size: 30px;
                 line-height: 64px;
             }
+            paper-dropdown-menu {width: 100%;}
         </style>
     </template>
 </dom-module>

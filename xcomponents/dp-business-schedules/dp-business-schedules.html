@@ -1,0 +1,82 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="dp-business-schedules">
+  <template>
+    <style include="dp-styles">
+        :host{
+        }
+        .business-schedule ul {
+            list-style: none;
+        }
+        .business-schedule ul li{
+            padding: 0.25em 0;
+        }
+        .day {
+            text-transform: capitalize;
+        }
+    </style>
+      <div class="business-schedule">
+          <h3>[[title]]</h3>
+          <ul class="business-schedule">
+              <template is="dom-repeat" items="[[value]]">
+                  <li><span class="day">[[_formatDayName(index)]]: </span>[[_formatTime(item.from)]] - [[_formatTime(item.to)]]</li>
+              </template>
+          </ul>
+      </div>
+  </template>
+
+  <script>
+      class DpBusinessSchedules extends Polymer.Element {
+          constructor() {
+              super();
+              this.days = {
+                  0: { abbr: 'sun', name: 'sunday' },
+                  1: { abbr: 'mon', name: 'monday' },
+                  2: { abbr: 'tue', name: 'tuesday' },
+                  3: { abbr: 'wed', name: 'wednesday' },
+                  4: { abbr: 'thu', name: 'thursday' },
+                  5: { abbr: 'fri', name: 'friday' },
+                  6: { abbr: 'sat', name: 'saturday' }
+              };
+          }
+          static get is() { return 'dp-business-schedules'; }
+          static get properties() {
+              return {title: String, value: Object};
+          }        
+          _formatDayName(idx) {
+              return this.days[idx] ? this.days[idx].name : '';
+          }
+
+          static isOpen(schedules) {
+              const now = new Date();
+              const cHour = now.getHours();
+              const cMin = now.getMinutes();
+              const cDay = now.getDay();
+
+              const { from, to} = schedules[cDay];
+              const cTime = cHour + (parseInt((cMin/ 60) * 100) / 100);
+              
+              return cTime >= from && cTime <= to;              
+          }
+
+          _formatTime(timeNum) {
+
+              const wNum = parseInt(timeNum);
+              const dNum = parseInt((timeNum - wNum) * 100) / 100;
+
+              const isPM = wNum > 12;
+
+              const hour = isPM ? wNum - 12 : wNum;
+              const min = dNum * 60;
+
+              return `${hour}:${min} ${ isPM ? 'pm' : 'am'}` ;
+
+              //10.5 => 10:30 am
+              //9.25 => 9:15 am
+              //17.2 => 05:
+          }
+      }
+
+      window.customElements.define(DpBusinessSchedules.is, DpBusinessSchedules);
+  </script>
+</dom-module>
