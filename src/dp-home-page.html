@@ -20,26 +20,72 @@
                     background-color: #fff;
                     width: 100%;
                 }
+
+            .result-list {
+                position: fixed;
+                top: 60px;
+                left: 0; right: 137px;
+                margin: 0 1em 0;
+                display: block;
+                background-color: #fff;
+            }
+
+            iron-list{
+                display: block;
+                position:relative;
+                max-height: 50vh;
+                background-color: #fff;                
+                width: 100%;
+            }
+            ul li{display: inline-block; border-bottom: solid 1px red;}
         </style>
         <div class="map-section">
             <dp-service-geo-helper id="geoService"></dp-service-geo-helper>
-            <google-map latitude="[[lat]]" longitude="[[lng]]"
-                          fit-to-marker api-key="AIzaSyDN1-5T5UmXbJLxj-wf56e_Mh4h32w11vQ">
+            <dp-google-helper id="googleHelper"></dp-google-helper>
+            <dp-api-service id="apiService"></dp-api-service>
+            <google-map-search map="[[map]]"
+                               query="[[mapSearchText]]"
+                               results="{{results}}"></google-map-search>
+
+            <google-map map="{{map}}" latitude="[[lat]]" longitude="[[lng]]"
+                        fit-to-marker api-key="AIzaSyDN1-5T5UmXbJLxj-wf56e_Mh4h32w11vQ">
                 <google-map-marker latitude="[[lat]]" longitude="[[lng]]"></google-map-marker>
+                <template is="dom-repeat" items="{{results}}" as="marker">
+                    <google-map-marker latitude="{{marker.latitude}}"
+                                       longitude="{{marker.longitude}}">
+                        <div>
+                            <h2>{{marker.name}}</h2>
+                            <span>{{marker.formatted_address}}</span>
+                        </div>
+                    </google-map-marker>
+                </template>
             </google-map>
             <div class="fixed-top">
                 <div class="search-bar">
                     <div class="layout horizontal">
-                        <paper-input placeholder="restaurants, hair salon" class="search-box"
-                                     no-label-float always-float-label></paper-input>
+                        <paper-input placeholder="restaurants, hair salon"
+                                     on-value-changed="_onSearchTextChanging"
+                                     value="{{searchText}}" class="search-box"
+                                     no-label-float always-float-label></paper-input>                      
                         <paper-button class="btn btn-default" raised>
-                            <i class="md-icon">search</i>
+                            <i class="md-icon xl">search</i>
                         </paper-button>
                         <paper-button class="btn btn-default" raised on-tap="_positionMe">
-                            <i class="md-icon">location_on</i>
+                            <i class="md-icon xl">location_on</i>
                         </paper-button>
                     </div>
                 </div>
+                
+            </div>
+            <div class="result-list" hidden$="[[!results.length]]">
+                <iron-list items="[[results]]" as="[[item]]">
+                    <template >
+                        <ul on-tap="_goToBusiness">
+                            <li>[[item.rating]]</li>
+                            <li>[[item.name]]</li>                            
+                        </ul>
+                    </template>
+                </iron-list>
             </div>
         </div>
     </template>
@@ -52,9 +98,34 @@
                     lat: String
                 };
             }
+            static get observers() {
+                return ['_onResultsChanged(results)'];
+            }
+            _onResultsChanged(results) {
+                if (results) {
+                }
+            }
+
             connectedCallback() {
                 super.connectedCallback();
             }
+            _goToBusiness(e) {
+                const elem = e.target;
+                const item = DpGoogleHelper.TransformGoogleMapBusiness(e.model.item);
+                this.$.apiService._addGoogleMapBusinessItem(item);
+                window.location.hash = `/business/${item.id}`;
+            }
+            _onSearchTextChanging() {
+                this._debouncer = Polymer.Debouncer.debounce(
+                    this._debouncer,
+                    Polymer.Async.timeOut.after(200), () => {
+                        this.mapSearchText = this.searchText;
+                        if (!this.searchText) {
+                            this.splice('results', 0, this.results.length);
+                        }
+                    });
+            }
+
             _positionMe(e) {
                 DpServiceGeoHelper.LongLat.then(e => {
                     console.log(e);

@@ -1,32 +1,62 @@
 ﻿<dom-module id="dp-business">
-    <template>
+    <template strip-whitespace>
         <style include="dp-styles">
-            .map-area{background-color: #fff; height: 200px; width: 100%;}
+            .map-area {
+                background-color: #fff;
+                height: 200px;
+                width: 100%;
+            }
+
+            .header-rating-start {
+                font-size: 1.125em;
+            }
         </style>
         <div class="dp-page fixed-top">
-            <dp-page-header title="[[value.name]]  ([[openText]])"></dp-page-header>
+            <dp-page-header title="[[value.name]]  ([[openText]])">
+                <div slot="right-section">
+                    <dp-rating-star class="header-rating-start" value="[[value.rating]]"></dp-rating-star>
+                </div>
+            </dp-page-header>
             <div class="dp-page-content">
-                <div class="layout horizontal">
-                    <div class="flex layout vertical">
-                        <img class="flex-2 profile-picture" src="../../images/store.png" />
+                <dp-calendar view-date="08/01/2017" on-value-changed="_changeDate"></dp-calendar>
+                <dp-calendar-a view-date="05/15/2017"></dp-calendar-a>
+                <dp-calendar-a view-date="02/10/2017"></dp-calendar-a>
+
+                <div class="row">
+                    <div class="col-4 col-sm-2">
+                        <img class="profile-picture" src="../../images/store.png" />
                     </div>
-                    <div class="flex-10">
-                        <div class="layout vertical justified">
-                            <address class="flex-2">
+                    <div class="col-8 col-sm-10">
+                        <div class="row">
+                            <address class="col-12">
                                 [[value.address]] [[value.address]]<br />
                                 [[value.city]] [[value.state]] [[value.zip]]
                             </address>
-                            <div class="flex-2 layout horizontal wrap">
-                                <paper-button class="btn btn-mint flex-2" icon="phone" raised>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <paper-button class="btn btn-mint btn-block"
+                                              icon="phone" raised>
                                     Call
                                 </paper-button>
-                                <paper-button class="btn btn-mint flex-2" icon="email" raised>
+                            </div>
+                            <div class="col-sm-3">
+                                <paper-button class="btn btn-mint btn-block"
+                                              icon="email" raised>
                                     Email
                                 </paper-button>
-                                <paper-button class="btn btn-mint flex-2" icon="directions" raised>
+                            </div>
+                            <div class="col-sm-3">
+                                <paper-button class="btn btn-mint btn-block"
+                                              icon="directions" raised>
                                     GPS
                                 </paper-button>
-                                <paper-button class="btn btn-primary flex-2" icon="date_range" raised>
+                            </div>
+                            <div class="col-sm-3">
+                                <paper-button class="btn btn-primary btn-block"
+                                              data-action="appointment"
+                                              on-tap="_goTo"
+                                              icon="date_range" raised>
                                     Book Appointment
                                 </paper-button>
                             </div>
@@ -34,27 +64,50 @@
                     </div>
                 </div>
                 <hr />
-                <div class="layout horizontal start wrap">
-                    <div class="flex-2">
-                        <h3>About Business</h3>
-                        <div>[[value.description]]</div>
-                        <hr />
-                        <div>
-                            Phone: <span>[[value.phone]]</span> | Email: <span>[[value.email]]</span>
-                        </div>                        
+                <template is="dom-if" if="{{!urlParam.option}}">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <h3>About Business</h3>
+                            <div>[[value.description]]</div>
+                            <hr />
+                            <div>
+                                Phone: <span>[[value.phone]]</span> | Email: <span>[[value.email]]</span>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <dp-business-schedules title="Business Hour" value="[[value.hours]]"></dp-business-schedules>
+                        </div>
                     </div>
-                    <div class="flex-2">
-                        <dp-business-schedules title="Business Hour" value="[[value.hours]]"></dp-business-schedules>
-                        
+                    <div class="map-area">
+                        Map Here
                     </div>
-                </div>
-                <div class="map-area">
-                    Map Here
-                </div>
+                </template>
+                <template is="dom-if" if="[[_toggleSection(urlParam.option, 'appointment')]]">
+                    <div class="row">
+                        <div class="offset-md-9 col-md-3 col-sm-12">
+                            <paper-dropdown-menu label="Service">
+                                <paper-listbox slot="dropdown-content" attr-for-selected="id" selected="{{profile.state}}">
+                                    <template is="dom-repeat" items='[[value.services]]'>
+                                        <paper-item id="[[item.id]]">[[item.name]]</paper-item>
+                                    </template>
+                                </paper-listbox>
+                            </paper-dropdown-menu>
+                        </div>
+                    </div>
+                    <h3>Next available appointments</h3>
+                    <div class="list-group">
+                        <iron-list items="[[value.nextAvailableAppointments]]" as="[[item]]">
+                        <template>
+                            <div class="list-group-item">[[item.name]]</div>
+                        </template></iron-list>
+                    </div>
+                    <h3>Or choose another date/time</h3>                    
+                </template>                
             </div>
             <dp-api-service id="DpApiService"
                             business-id="[[urlParam.id]]"
                             business-info="{{value}}"></dp-api-service>
+            
         </div>
     </template>
     <script>
@@ -66,7 +119,24 @@
                 };
             }
             static get observers() {
-                return [];
+                return ['_onUrlParamChange(urlParam)'];
+            }
+
+            _onUrlParamChange(urlParam) {
+            }
+
+            _changeDate(e) {
+                console.log(e.detail);
+            }
+            _goTo(e) {
+                const action = e.target.dataset.action;
+                const id = this.urlParam.id;
+                const baseUrl = `#/business/${id}/${action}`;
+                window.location.hash = baseUrl;
+            }
+
+            _toggleSection(urlParamAction, section) {
+                return urlParamAction === section;
             }
 
             _isOpen(schedules) {

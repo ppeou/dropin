@@ -1,0 +1,176 @@
+
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<dom-module id="dp-calendar">
+    <template>
+        <style include="dp-styles">
+            .row-week {
+                display: block;
+            }
+
+                .row-week .cell-day {
+                    display: inline-block;
+                    width: 10%;
+                }
+        </style>
+        <h1>AAAA</h1>
+        <div>
+            <div data-month="-1" on-tap="_goToMonth">Prev</div>
+            <div>[[calendarData.monthLabel]] [[calendarData.dateLabel]], [[calendarData.yearLabel]]</div>
+            <div data-month="1" on-tap="_goToMonth">Next</div>
+        </div>
+        <div class="row-week header">
+            <template is="dom-repeat" items="[[options.days]]" as="day">
+                <div class="cell-day header">[[day]]</div>
+            </template>
+        </div>
+        <template is="dom-repeat" items="[[calendarData.weeks]]" as="week">
+            <div class="row-week">
+                <template is="dom-repeat" items="[[week]]" as="item">
+                    <div class="cell-day" on-tap="_onDayClick">[[item.label]]</div>
+                </template>
+            </div>
+        </template>
+    </template>
+    <script>
+        class DpCalendar extends Polymer.Element {
+            static get is() { return 'dp-calendar'; }
+            static get properties() {
+                return {
+                    viewDate: {
+                        type: String, reflectToAttribute: true
+                    },
+                    calendarData: {
+                        type: Object, value: {
+                            weeks: undefined,
+                            monthLabel: undefined,
+                            yearLabel: undefined
+                        }
+                    },
+                    weeks: Array,
+                    options: {
+                        type: Object, value: {
+                            days: ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+                            months: [
+                                'January', 'Febuary', 'March', 'April', 'May', 'June',
+                                'July', 'August', 'September','October', 'November', 'December']
+                        }
+                    }
+                };
+            }
+            static get observers() {
+                return ['_onViewDateChange(viewDate)'];
+            }
+            _onViewDateChange(viewDate) {
+                let __viewDate = viewDate;
+
+                if (!__viewDate) {
+                    __viewDate = new Date();
+                }
+                else {
+                    if (DpCalendar.isDateObject(__viewDate)) {
+                        if (__viewDate.getTime() === NaN) {
+                            __viewDate = new Date();
+                        }
+                    }
+                    else {
+                        __viewDate = new Date(viewDate);
+                        if (__viewDate.getTime() === NaN) {
+                            __viewDate = new Date();
+                        }
+                    }
+                }
+
+                __viewDate.setDate(1);
+                __viewDate.setHours(0, 0, 0, 0);
+
+                const __startDate = DpCalendar.getStartDateForCalendar(__viewDate);
+                const __endDate = DpCalendar.getLastDateForCalendar(__startDate);                
+                this.set('calendarData.viewDate', __viewDate);
+                this._buildWeeksDaysList(__startDate);
+            }
+
+            static getStartDateForCalendar(d) {
+                let newDate = DpCalendar.cloneDate(d);
+                newDate.setDate((d.getDay() - 1) * -1);
+                return newDate;
+            }
+
+            static getLastDateForCalendar(d) {
+                let newDate = DpCalendar.cloneDate(d);
+                newDate.setDate(newDate.getDate() + 41);
+                return newDate;
+            }
+
+            static cloneDate(d) {
+                return new Date(d.getTime());
+            }
+            _onDayClick(e) {
+                const ts = e.model.item.ts;
+                const day = new Date(ts);
+                this.setProperties({
+                    'calendarData.monthLabel': this.options.months[day.getMonth()],
+                    'calendarData.yearLabel': day.getFullYear(),
+                    'calendarData.dateLabel': day.getDate(),
+                });
+                this.set('value', day);
+
+                const event = new CustomEvent('value-changed', {
+                    bubbles: true, composed: true,
+                    detail: day
+                });
+
+                this.dispatchEvent(event);
+
+            }
+            _goToMonth(e) {            
+                const adjustedMonth = parseInt(e.target.dataset.month);
+                const __viewDate = DpCalendar.cloneDate(this.calendarData.viewDate);                
+                __viewDate.setMonth(__viewDate.getMonth() + adjustedMonth);                                
+                this.set('viewDate', __viewDate);
+            }
+            _buildWeeksDaysList(startDate) {
+                const viewDate = this.calendarData.viewDate;
+                const today = DpCalendar.Today;
+                const todayTS = today.getTime();
+                const startDateTS = startDate.getTime();
+                const totalDayCount = 41;
+                let weeksOfMonth = [];
+                let daysOfweek = [];
+                let i = 0, j = 0, DayCount = 0;
+                let day, dayTS, dayLabel;
+                for (i = 0; i < 6; i = i + 1) {
+                    daysOfweek = [];
+                    for (j = 0; j < 7; j = j + 1) {
+                        day = new Date((86400000 * DayCount) + startDateTS);
+                        dayTS = day.getTime();
+                        dayLabel = day.getDate();
+                        daysOfweek.push({
+                            ts: dayTS,
+                            label: dayLabel
+                        });
+                        DayCount = DayCount + 1;
+                    }
+                    weeksOfMonth.push(daysOfweek);
+                }
+                this.setProperties({
+                    'calendarData.weeks': weeksOfMonth,
+                    'calendarData.monthLabel': this.options.months[viewDate.getMonth()],
+                    'calendarData.yearLabel': viewDate.getFullYear(),
+                    'calendarData.dateLabel': viewDate.getDate(),
+                });
+            }
+
+            static get Today() {
+                let d = new Date();
+                d.setHours(0, 0, 0, 0);
+                return d;
+            }
+
+            static isDateObject(d) {
+                return d instanceof Date;
+            }
+        }
+
+        window.customElements.define(DpCalendar.is, DpCalendar);
+    </script>
+</dom-module>

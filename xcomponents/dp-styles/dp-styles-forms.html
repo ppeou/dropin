@@ -4,13 +4,53 @@
             .input-spacer {
                 padding: 0.5em 1em;
             }
+
                 .input-spacer:first-child {
                     padding: 0.5em 1em 0.5em 0;
                 }
+
                 .input-spacer:last-child {
                     padding: 0.5em 0 0.5em 1em;
                 }
-                
+
+
+            /*-- List --*/
+
+            .list-group {
+                padding-left: 0;
+                margin-bottom: 20px;
+            }
+
+            .list-group-item {
+                display: block;
+                padding: 10px 15px;
+                margin-bottom: -1px;
+                background-color: #fff;
+                border: 1px solid #e9e9e9;
+                color: #555;
+            }
+
+                .list-group-item:hover,
+                .list-group-item:focus {
+                    cursor: pointer;
+                    background-color: #f5f5f5;
+                }
+                .list-group-item[disabled],
+                .list-group-item.disabled,
+                .list-group-item.disabled:focus,
+                .list-group-item.disabled:hover {
+                    color: #777;
+                    cursor: not-allowed;
+                    background-color: #eee;
+                }
+
+                .list-group-item.active, 
+                .list-group-item.active:hover, 
+                .list-group-item.active:focus {
+                    background-color: #54abd9;
+                    border-color: #54abd9;
+                    color: #fff;
+                }
         </style>
     </template>
 </dom-module>

@@ -8,6 +8,7 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/lib/utils/debounce.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer/app-drawer.html">
 <link rel="import" href="../bower_components/app-layout/app-drawer-layout/app-drawer-layout.html">
 <link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
@@ -18,6 +19,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/app-route/app-route.html">
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
+<link rel="import" href="../bower_components/iron-list/iron-list.html">
 <link rel="import" href="../bower_components/paper-menu-button/paper-menu-button.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
 <link rel="import" href="../bower_components/paper-button/paper-button.html">
@@ -27,8 +29,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="services/dp-url-route-service.html">
 <link rel="import" href="services/dp-api-service.html">
+<link rel="import" href="services/dp-google-helper.html">
+
+<link rel="import" href="../xcomponents/dp-calendar/dp-calendar.html">
 <link rel="import" href="../xcomponents/dp-stamp/dp-stamp.html">
 <link rel="import" href="../xcomponents/dp-menu/dp-menu.html">
+<link rel="import" href="../xcomponents/dp-rating-star/dp-rating-star.html">
 <link rel="import" href="../xcomponents/dp-page-header/dp-page-header.html">
 <link rel="import" href="../xcomponents/dp-business-schedules/dp-business-schedules.html">
 
@@ -146,7 +152,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             _pageChanged(routeMap) {
-                console.log(routeMap);
                 const resolvedPageUrl = this.resolveUrl(routeMap.file);
                 Polymer.importHref(
                     resolvedPageUrl,

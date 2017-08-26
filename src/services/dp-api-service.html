@@ -1,243 +1,11 @@
 ﻿<dom-module id="dp-api-service">
     <script>
-        const states = [
-            {
-                'name': 'Alabama',
-                'abbr': 'AL'
-            },
-            {
-                'name': 'Alaska',
-                'abbr': 'AK'
-            },
-            {
-                'name': 'American Samoa',
-                'abbr': 'AS'
-            },
-            {
-                'name': 'Arizona',
-                'abbr': 'AZ'
-            },
-            {
-                'name': 'Arkansas',
-                'abbr': 'AR'
-            },
-            {
-                'name': 'California',
-                'abbr': 'CA'
-            },
-            {
-                'name': 'Colorado',
-                'abbr': 'CO'
-            },
-            {
-                'name': 'Connecticut',
-                'abbr': 'CT'
-            },
-            {
-                'name': 'Delaware',
-                'abbr': 'DE'
-            },
-            {
-                'name': 'District Of Columbia',
-                'abbr': 'DC'
-            },
-            {
-                'name': 'Federated States Of Micronesia',
-                'abbr': 'FM'
-            },
-            {
-                'name': 'Florida',
-                'abbr': 'FL'
-            },
-            {
-                'name': 'Georgia',
-                'abbr': 'GA'
-            },
-            {
-                'name': 'Guam',
-                'abbr': 'GU'
-            },
-            {
-                'name': 'Hawaii',
-                'abbr': 'HI'
-            },
-            {
-                'name': 'Idaho',
-                'abbr': 'ID'
-            },
-            {
-                'name': 'Illinois',
-                'abbr': 'IL'
-            },
-            {
-                'name': 'Indiana',
-                'abbr': 'IN'
-            },
-            {
-                'name': 'Iowa',
-                'abbr': 'IA'
-            },
-            {
-                'name': 'Kansas',
-                'abbr': 'KS'
-            },
-            {
-                'name': 'Kentucky',
-                'abbr': 'KY'
-            },
-            {
-                'name': 'Louisiana',
-                'abbr': 'LA'
-            },
-            {
-                'name': 'Maine',
-                'abbr': 'ME'
-            },
-            {
-                'name': 'Marshall Islands',
-                'abbr': 'MH'
-            },
-            {
-                'name': 'Maryland',
-                'abbr': 'MD'
-            },
-            {
-                'name': 'Massachusetts',
-                'abbr': 'MA'
-            },
-            {
-                'name': 'Michigan',
-                'abbr': 'MI'
-            },
-            {
-                'name': 'Minnesota',
-                'abbr': 'MN'
-            },
-            {
-                'name': 'Mississippi',
-                'abbr': 'MS'
-            },
-            {
-                'name': 'Missouri',
-                'abbr': 'MO'
-            },
-            {
-                'name': 'Montana',
-                'abbr': 'MT'
-            },
-            {
-                'name': 'Nebraska',
-                'abbr': 'NE'
-            },
-            {
-                'name': 'Nevada',
-                'abbr': 'NV'
-            },
-            {
-                'name': 'New Hampshire',
-                'abbr': 'NH'
-            },
-            {
-                'name': 'New Jersey',
-                'abbr': 'NJ'
-            },
-            {
-                'name': 'New Mexico',
-                'abbr': 'NM'
-            },
-            {
-                'name': 'New York',
-                'abbr': 'NY'
-            },
-            {
-                'name': 'North Carolina',
-                'abbr': 'NC'
-            },
-            {
-                'name': 'North Dakota',
-                'abbr': 'ND'
-            },
-            {
-                'name': 'Northern Mariana Islands',
-                'abbr': 'MP'
-            },
-            {
-                'name': 'Ohio',
-                'abbr': 'OH'
-            },
-            {
-                'name': 'Oklahoma',
-                'abbr': 'OK'
-            },
-            {
-                'name': 'Oregon',
-                'abbr': 'OR'
-            },
-            {
-                'name': 'Palau',
-                'abbr': 'PW'
-            },
-            {
-                'name': 'Pennsylvania',
-                'abbr': 'PA'
-            },
-            {
-                'name': 'Puerto Rico',
-                'abbr': 'PR'
-            },
-            {
-                'name': 'Rhode Island',
-                'abbr': 'RI'
-            },
-            {
-                'name': 'South Carolina',
-                'abbr': 'SC'
-            },
-            {
-                'name': 'South Dakota',
-                'abbr': 'SD'
-            },
-            {
-                'name': 'Tennessee',
-                'abbr': 'TN'
-            },
-            {
-                'name': 'Texas',
-                'abbr': 'TX'
-            },
-            {
-                'name': 'Utah',
-                'abbr': 'UT'
-            },
-            {
-                'name': 'Vermont',
-                'abbr': 'VT'
-            },
-            {
-                'name': 'Virgin Islands',
-                'abbr': 'VI'
-            },
-            {
-                'name': 'Virginia',
-                'abbr': 'VA'
-            },
-            {
-                'name': 'Washington',
-                'abbr': 'WA'
-            },
-            {
-                'name': 'West Virginia',
-                'abbr': 'WV'
-            },
-            {
-                'name': 'Wisconsin',
-                'abbr': 'WI'
-            },
-            {
-                'name': 'Wyoming',
-                'abbr': 'WY'
-            }
-        ];
+        const states = [{ 'name': 'Alabama', 'abbr': 'AL' }, { 'name': 'Alaska', 'abbr': 'AK' }, { 'name': 'American Samoa', 'abbr': 'AS' }, { 'name': 'Arizona', 'abbr': 'AZ' }, { 'name': 'Arkansas', 'abbr': 'AR' }, { 'name': 'California', 'abbr': 'CA' }, { 'name': 'Colorado', 'abbr': 'CO' }, { 'name': 'Connecticut', 'abbr': 'CT' }, { 'name': 'Delaware', 'abbr': 'DE' }, { 'name': 'District Of Columbia', 'abbr': 'DC' }, { 'name': 'Federatingd States Of Micronesia', 'abbr': 'FM' }, { 'name': 'Florida', 'abbr': 'FL' }, { 'name': 'Georgia', 'abbr': 'GA' }, { 'name': 'Guam', 'abbr': 'GU' }, { 'name': 'Hawaii', 'abbr': 'HI' }, { 'name': 'Idaho', 'abbr': 'ID' }, { 'name': 'Illinois', 'abbr': 'IL' }, { 'name': 'Indiana', 'abbr': 'IN' }, { 'name': 'Iowa', 'abbr': 'IA' }, { 'name': 'Kansas', 'abbr': 'KS' }, { 'name': 'Kentucky', 'abbr': 'KY' }, { 'name': 'Louisiana', 'abbr': 'LA' }, { 'name': 'Maine', 'abbr': 'ME' }, { 'name': 'Marshall Islands', 'abbr': 'MH' }, { 'name': 'Maryland', 'abbr': 'MD' }, { 'name': 'Massachusetts', 'abbr': 'MA' }, { 'name': 'Michigan', 'abbr': 'MI' }, { 'name': 'Minnesota', 'abbr': 'MN' }, { 'name': 'Mississippi', 'abbr': 'MS' }, { 'name': 'Missouri', 'abbr': 'MO' }, { 'name': 'Montana', 'abbr': 'MT' }, { 'name': 'Nebraska', 'abbr': 'NE' }, { 'name': 'Nevada', 'abbr': 'NV' }, { 'name': 'New Hampshire', 'abbr': 'NH' }, { 'name': 'New Jersey', 'abbr': 'NJ' }, { 'name': 'New Mexico', 'abbr': 'NM' }, { 'name': 'New York', 'abbr': 'NY' }, { 'name': 'North Carolina', 'abbr': 'NC' }, { 'name': 'North Dakota', 'abbr': 'ND' }, { 'name': 'Northern Mariana Islands', 'abbr': 'MP' }, { 'name': 'Ohio', 'abbr': 'OH' }, { 'name': 'Oklahoma', 'abbr': 'OK' }, { 'name': 'Oregon', 'abbr': 'OR' }, { 'name': 'Palau', 'abbr': 'PW' }, { 'name': 'Pennsylvania', 'abbr': 'PA' }, { 'name': 'Puerto Rico', 'abbr': 'PR' }, { 'name': 'Rhode Island', 'abbr': 'RI' }, { 'name': 'South Carolina', 'abbr': 'SC' }, { 'name': 'South Dakota', 'abbr': 'SD' }, { 'name': 'Tennessee', 'abbr': 'TN' }, { 'name': 'Texas', 'abbr': 'TX' }, { 'name': 'Utah', 'abbr': 'UT' }, { 'name': 'Vermont', 'abbr': 'VT' }, { 'name': 'Virgin Islands', 'abbr': 'VI' }, { 'name': 'Virginia', 'abbr': 'VA' }, { 'name': 'Washington', 'abbr': 'WA' }, { 'name': 'West Virginia', 'abbr': 'WV' }, { 'name': 'Wisconsin', 'abbr': 'WI' }, { 'name': 'Wyoming', 'abbr': 'WY' }];
+        const businesses = {
+            1: { "id": 1, "name": "Emma's Spa & Hair Salon", "category": "Hair Salon", "address": "18775 Clay Rd", "city": "Houston", "state": "TX", "zip": "77084", "phone": "+12815793800", "email": "EmmasSpaKaty@dropin.com", "rating": 4.1, "description": "Emma's Spa Hair Salon Para toda la familia <br/>18775 Clay Rd.Suite A Houston, TX.77084<br/>(281) 579 3800", "hours": [{ from: 11, to: 17 }, { from: 10, to: 19 }, { from: 10, to: 19 }, { from: 10, to: 19 }, { from: 10, to: 19 }, { from: 10, to: 19 }, { from: 9, to: 19 },] },
+            2: { "id": 2, "name": "Castillo's Hair Salon", "category": "Hair Salon", "address": "19410 Clay Rd # H", "city": "Katy", "state": "TX", "zip": "77449", "phone": "+12818556818", "email": "CastilloKaty@dropin.com", "rating": 3.8, "description": "Castillo", "hours": [{ from: 11, to: 17 }, { from: 10, to: 19 }, { from: 10, to: 19 }, { from: 10, to: 19 }, { from: 10, to: 19 }, { from: 10, to: 19 }, { from: 9, to: 19 },] },
+            3: { "id": 3, "name": "Everything Pet", "category": "Pet Care", "address": "3616 N Fry Rd", "city": "Katy", "state": "TX", "zip": "77449", "phone": "+12817174060", "email": "EverythingPet@dropin.com", "rating": 4.6, "description": "Castillo", "hours": [{ from: 11, to: 18 }, { from: 9, to: 21 }, { from: 9, to: 21 }, { from: 9, to: 21 }, { from: 9, to: 21 }, { from: 9, to: 20 }, { from: 9, to: 20 },] }
+        };
         class DpApiService extends Polymer.Element {
             static get is() { return 'dp-api-service'; }
             static get observers() {
@@ -252,28 +20,36 @@
                     }
                 };
             }
+            _addGoogleMapBusinessItem(item) {
+                businesses[item.id] = item;
+            }
+
             _onBusinessIdChange(id) {
-                const data = {
-                    id,
-                    name: `Business ${id}`,
-                    category: 'Hair Salon',
-                    address: '1234 Broadway Ave',
-                    city: 'Houston', state: 'TX', zip: '0000',
-                    phone: '+17894004555',
-                    email: `business${id}@dropin.com`,
-                    description: 'Our mission at Hair Salon is to delight each guest every time we come in contact with them. We will build lasting relationships by making them feel comfortable and welcome, and build trust as industry.',
-                    hours: [
-                        {  from: 7.5, to: 19.25 },
-                        { from: 8.25, to: 20.5 },
-                        { from: 7, to: 15.5 },
-                        { from: 10, to: 19 },
-                        { from: 10, to: 19 },
-                        { from: 10, to: 19 },
-                        { from: 10, to: 19 },
-                    ]
-                };
+                const data = businesses[id];
+                data.services = this._generateService();
+                data.nextAvailableAppointments = this._generateNextAvailableAppointments();
                 this.set('businessInfo', data);
             }
+
+            _generateService() {
+                return [
+                    { id: 1, name: 'Man Hair Cut' },
+                    { id: 2, name: 'Man Hair Cut & Shampoo' },
+                    { id: 3, name: 'Lady Hair Cut' },
+                    { id: 4, name: 'Nail Service' },
+                    { id: 5, name: 'Shampoo & Highlight' }
+                ];
+            }
+
+            _generateNextAvailableAppointments() {
+                return [
+                    { id: 1, name: 'Walk-in Today @ 3:00pm' },
+                    { id: 2, name: 'Today 4:30 pm' },
+                    { id: 3, name: 'Tomorrow 10:00 am' },
+                    { id: 4, name: 'Oct 15, 2017 @ 4:00 pm' }
+                ];
+            }
+
             _getStateList() {
                 return states;
             }
@@ -290,7 +66,6 @@
                     state: 'NY',
                     zipcode: '10001'
                 }
-                console.log('here');
                 this.set('profile', data);
             }
         }

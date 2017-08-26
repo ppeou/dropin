@@ -9,6 +9,13 @@
             static get LongLat() {                
                 
             }
+
+            static dispatchEvent({ id, data}) {
+                const event = new CustomEvent(event.id, {
+                    bubbles: true, composed: true,
+                    detail: data
+                });
+            }
         }
 
         window.customElements.define(DpFnHelper.is, DpFnHelper);

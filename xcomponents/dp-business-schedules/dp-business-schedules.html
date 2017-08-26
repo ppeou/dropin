@@ -48,15 +48,17 @@
           }
 
           static isOpen(schedules) {
-              const now = new Date();
-              const cHour = now.getHours();
-              const cMin = now.getMinutes();
-              const cDay = now.getDay();
+              if (schedules) {
+                  const now = new Date();
+                  const cHour = now.getHours();
+                  const cMin = now.getMinutes();
+                  const cDay = now.getDay();
 
-              const { from, to} = schedules[cDay];
-              const cTime = cHour + (parseInt((cMin/ 60) * 100) / 100);
-              
-              return cTime >= from && cTime <= to;              
+                  const { from, to } = schedules[cDay];
+                  const cTime = cHour + (parseInt((cMin / 60) * 100) / 100);
+
+                  return cTime >= from && cTime <= to;
+              }
           }
 
           _formatTime(timeNum) {
