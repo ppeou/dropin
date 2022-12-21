@@ -84,6 +84,8 @@ generated using fragment bundling:
 
     polymer serve build/bundled
 
+https://www.facebook.com/reel/1209800933225138?mibextid=wa05Vy&fs=e&s=9RfQYY
+
 ### Run tests
 
 This command will run [Web Component Tester](https://github.com/Polymer/web-component-tester)
